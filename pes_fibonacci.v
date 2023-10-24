@@ -1,76 +1,33 @@
-`default_nettype none
-module fib
-#(
-  parameter N_IN  = 7,
-  parameter N_OUT = 90
-)
-(
-  input  wire             rst_n,
-  input  wire             clk,
-  input  wire             req,
-  input  wire [N_IN-1:0]  n,
-  output reg              ack,
-  output reg  [N_OUT-1:0] result
+module fibonacci_counter (
+  input  clk,
+  input  rst,
+  input  [5:0] n,          // Input for the desired Fibonacci sequence number (6 bits)
+  output wire [31:0] out
 );
 
-localparam
-  INIT          = 2'b00,
-  WAIT_REQ      = 2'b01,
-  CALC          = 2'b10,
-  WAIT_REQ_FALL = 2'b11;
+  // Registers to store the current and previous values of the Fibonacci counter
+  reg [31:0] RegA, RegB ;
+  reg [5:0] counter;      // Counter to keep track of Fibonacci sequence number
+  reg [31:0] par_out;
 
-reg [1:0]       state;
-reg [N_IN-1:0]  n_reg;
-reg [N_OUT-1:0] n_m1;
-reg [N_OUT-1:0] n_m2;
-reg [N_IN-1:0]  cnt;
-
-always @(posedge clk or negedge rst_n) begin
-  if(~rst_n) begin
-    state  <= INIT;
-    n_reg  <= 0;
-    n_m1   <= 0;
-    n_m2   <= 0;
-    cnt    <= 0;
-    ack    <= 0;
-    result <= 0;
-  end else begin
-    case(state)
-      INIT         :begin
-        state <= #1 WAIT_REQ;
-      end
-      WAIT_REQ     :begin
-        if( req) begin
-          state  <= #1 CALC;
-          n_reg  <= #1 n;
-          n_m1   <= #1 1;
-          n_m2   <= #1 0;
-          cnt    <= #1 0;
-          ack    <= #1 0;
-          result <= #1 0;
+  always @(posedge clk or posedge rst) begin
+    if (rst) begin
+      RegA <= 32'h1;     // Start RegA with the second value of the Fibonacci series - '1'
+      RegB <= 32'h0;     // Start RegB with the first value of the Fibonacci series - '0'
+      counter <= 6'b0;   // Reset the counter to zero
+     end
+    else begin
+      if (counter <= n) begin
+        RegA <= (RegB == 32'h80000000) ? 32'h1 : (RegA + RegB); // if RegB == 2^31, reset RegA
+        RegB <= (RegB == 32'h80000000) ? 32'h0 : RegA;           // if RegB == 2^31, reset RegB
+        par_out <=  RegB ; // RegB output stored as par_out
+       	counter <= counter + 1; // Increment the counter
         end
-      end
-      CALC         :begin
-        if(cnt == (n_reg-1)) begin
-          state  <= #1 WAIT_REQ_FALL;
-          result <= #1 n_m1;
-        end else begin
-          n_m1 <= #1 n_m1 + n_m2;
-          n_m2 <= #1 n_m1;
-          cnt  <= #1 cnt + 1;
-        end
-      end
-      WAIT_REQ_FALL:begin
-        if(~req)
-          state <= #1 WAIT_REQ;
-        ack <= #1 1;
-      end
-      default      :begin
-        state <= 2'bxx;
-      end
-    endcase
+      else
+	par_out = 32'h0;      // 32'h0 output stored as par_out
+    end
   end
-end
+
+  assign out = par_out;
 
 endmodule
-`default_nettype wire
