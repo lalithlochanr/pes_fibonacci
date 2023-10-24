@@ -57,10 +57,10 @@ The Fibonacci sequence's simple yet fascinating properties make it a subject of 
 
 These tools play crucial roles in digital design, verification, and simulation processes, ensuring the correctness and functionality of digital circuits at different levels of abstraction.  
 
-* Pre-Simulation Synthesis  
+* Pre-Simulation   
 
-- Create the verilog file -  
-  ```` fib_seq_calc.v````  
+- Create the verilog file using command  -  
+  ```` vim fib_seq_calc.v````  
    with the code given.
   
 ````
@@ -99,8 +99,12 @@ module fibonacci_counter (
 endmodule
 	  
 ````
--Create the test-bench  
-```` tb_fib_seq_calc.v````  
+
+![Screenshot from 2023-10-24 23-33-48](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/c214ab6a-4b33-4d49-b443-ed62de193cea)
+
+
+-Create the test-bench using command -      
+```` vim tb_fib_seq_calc.v````  
 with the code given.
 
 ````
@@ -228,27 +232,100 @@ module tb ();
 endmodule
 ````
 
+![Screenshot from 2023-10-24 23-34-06](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/76d421b5-e3eb-4ebe-85f5-7731e94dee70)
 
+* Simulation
+  
+- Implement this code using iverilog then execute the file and obtain vcd file and obtain the waveform using gtkwave by following the commands
+  below.
 
+  ````
+  iverilog fib_seq_calc.v tb_fib_seq_calc.v
+  ./a.out
+  gtkwave dump_fib_seq_calc.vcd
+  ````
+![Screenshot from 2023-10-24 23-34-34](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/7ff0c345-0293-4b6b-8aa1-0144c0fcc1de)
 
+* Verify the waveform - (the bits represent hexadecimal values!!!!)
 
+![Screenshot from 2023-10-24 23-35-18](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/9f533ff4-8963-43bd-b852-2e21665c732e)
 
+![Screenshot from 2023-10-24 23-35-32](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/dbb21da7-50b3-4bd2-b6e4-1954009ad118)
 
+![Screenshot from 2023-10-24 23-35-43](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/1f267662-d98f-43c8-940a-bd26023fb4f6)
 
+![Screenshot from 2023-10-24 23-35-49](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/aa07a829-5950-4fe9-8ff6-6bd41b388481)
 
+![Screenshot from 2023-10-24 23-36-24](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/9dfcb302-2d43-469c-be20-44bffd6c1646)
 
+![Screenshot from 2023-10-24 23-36-46](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/ab948da8-2df3-4406-96d4-4de6849a28ed)
 
+* RTL (Register-Transfer Level) Synthesis
 
+- Invoke yosys
 
+````
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog fib_seq_calc.v
+synth -top fibonacci_counter
+````
 
+![Screenshot from 2023-10-24 23-39-34](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/45b5bdc4-cc85-49bd-860c-5dc8b3130b9a)
 
+![Screenshot from 2023-10-24 23-39-47](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/d393a6f0-038e-4798-b51d-a5c20d3800d5)
 
+- For viewing netlist -
 
+````
+abc -liberty -lib ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+````
+![Screenshot from 2023-10-24 23-42-16](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/befcdd17-04a4-458b-b437-9dfcde5afdfc)
 
+![Screenshot from 2023-10-24 23-42-33](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/2fda4e27-d044-41c0-90f6-9503959346a0)
 
+![Screenshot from 2023-10-24 23-42-50](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/086fbfad-f024-4bd4-8e70-3ae683645d9b)
 
+![Screenshot from 2023-10-24 23-43-00](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/51d74c6e-54b1-40f6-a5e8-c1d8abca7127)
 
+![Screenshot from 2023-10-24 23-44-16](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/c92d28c8-4a2b-4ac1-a7c7-e3d2967bb558)
 
+- To obtain net file -
+
+````
+write_verilog fib_seq_calc_net.v
+!vim fib_seq_calc_net.v
+````
+![Screenshot from 2023-10-24 23-45-32](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/b01ba4f1-066b-4bb2-9777-e8cea2c0844f)
+
+- To reduce the net file -
+
+````
+write_verilog -noattr fib_seq_calc_net.v
+!vim fib_seq_calc_net.v
+````
+
+![Screenshot from 2023-10-24 23-46-14](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/811af82c-f577-42fb-befa-ef7799c2725a)
+
+* GLS (Gate Level Simulation)
+
+- we generate the waveform with the netlist file generated.
+
+````
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v fib_seq_calc_net.v tb_fib_seq_calc.v
+````
+![Screenshot from 2023-10-24 23-48-10](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/bc86263b-c348-4882-88ca-19edc657b27f)
+
+- execute the file and obtain the waveform.
+
+````
+./a.out
+gtkwave dump_fib_seq_calc.vcd
+````
+
+![Screenshot from 2023-10-24 23-54-53](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/c79dd18e-049b-4aad-ac4b-473c372f2753)
+
+![Screenshot from 2023-10-24 23-53-38](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/48e3f4d2-8904-40cb-9369-981a6d60f253)
 
 
 </details>
