@@ -1,55 +1,122 @@
-`include "../rtl/fib.v"
+module tb ();
 
-`default_nettype none
-module tb_fib;
+  reg clk, rst;
+  wire [31:0] out;
+  reg [5:0] n; // User input for the desired Fibonacci sequence number (6 bits)
+  wire [5:0] counter; // Counter waveform
 
-localparam
-  N_IN = 7,
-  N_OUT = 64;
+  fibonacci_counter u0 (
+    .clk(clk),
+    .rst(rst),
+    .n(n), // Connect the n input
+    .out(out)
+  );
 
-reg              rst_n;
-reg              clk;
-reg              req;
-reg  [N_IN-1:0]  n;
-wire             ack;
-wire [N_OUT-1:0] result;
+  always #10 clk = ~clk;
 
-fib
-#(
-  .N_IN  ( N_IN  ),
-  .N_OUT ( N_OUT )
-) fib_1
-(
-  .rst_n  ( rst_n  ),
-  .clk    ( clk    ),
-  .req    ( req    ),
-  .n      ( n      ),
-  .ack    ( ack    ),
-  .result ( result )
-);
+  initial begin
+    clk = 0;
+    rst = 1;
+    n = 0; // Initialize n to 0
 
-parameter CLK_PERIOD = 10;
-always #(CLK_PERIOD/2) clk = ~clk;
+    #20 rst = 0;
 
-initial begin
-  $dumpfile("tb_fib.vcd");
-  $dumpvars(0, tb_fib);
-end
+    // Test case 1: Calculate Fibonacci for n = 0
+    n = 0; // Example: Calculate Fibonacci for n = 0
+    #20 
+    rst = 0;
 
-initial begin
-  #1 rst_n<=1'bx;clk<=1'bx;req<=1'bx;n<={N_IN{1'bx}};
-  #(CLK_PERIOD) rst_n<=1;
-  #(CLK_PERIOD*3) rst_n<=0;clk<=0;req<=0;n<=0;
-  repeat(5) @(posedge clk);
-  rst_n<=1;
-  repeat(5) @(posedge clk);
-  n<=66;
-  repeat(5) @(posedge clk);
-  req<=1;
-  while(~ack) @(posedge clk);
-  repeat(10) @(posedge clk);
-  $finish(2);
-end
+    // Wait for the calculation to complete
+    #500; // Adjust this as needed
+
+    // Reset the input, output, and counter to zero
+    n = 0;
+    rst = 1;
+
+    // Wait before starting the next test case
+    #100;
+
+
+    // Test case 2: Calculate Fibonacci for n = 1
+    n = 1; // Example: Calculate Fibonacci for n = 1
+    #20
+    rst = 0;
+
+    // Wait for the calculation to complete
+    #500; // Adjust this as needed
+
+    // Reset the input, output, and counter to zero
+    n = 0;
+    rst = 1;
+
+    // Wait before starting the next test case
+    #100;
+
+    // Test case 3: Calculate Fibonacci for n = 2
+    n = 2; // Example: Calculate Fibonacci for n = 2
+    #20
+    rst = 0;
+
+    // Wait for the calculation to complete
+    #500; // Adjust this as needed
+
+    // Reset the input, output, and counter to zero
+    n = 0;
+    rst = 1;
+
+    // Wait before starting the next test case
+    #100;
+
+
+    // Test case 4: Calculate Fibonacci for n = 3
+    n = 3; // Example: Calculate Fibonacci for n = 3
+    #20
+    rst = 0;
+
+    // Wait for the calculation to complete
+    #500; // Adjust this as needed
+
+    // Reset the input, output, and counter to zero
+    n = 0;
+    rst = 1;
+
+    // Wait before starting the next test case
+    #100;
+
+    // Test case 5: Calculate Fibonacci for n = 21
+    n = 21; // Example: Calculate Fibonacci for n = 21
+    #20
+    rst = 0;
+
+    // Wait for the calculation to complete
+    #500; // Adjust this as needed
+
+    // Reset the input, output, and counter to zero
+    n = 0;
+    rst = 1;
+
+    // Test case 6: Calculate Fibonacci for n = 45
+    n = 45; // Example: Calculate Fibonacci for n = 45
+    #20
+    rst = 0;
+
+    // Wait for the calculation to complete
+    #2000; // Adjust this as needed
+
+    // Reset the input, output, and counter to zero
+    n = 0;
+    rst = 1;
+
+    // Wait before starting the next test case
+    #100;
+
+    // Finish simulation
+    $finish;
+  end
+
+  initial begin
+    $dumpfile("dump_fib_seq_calc.vcd");
+    $dumpvars(0);
+  end
 
 endmodule
-`default_nettype wire
