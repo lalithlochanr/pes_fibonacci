@@ -64,7 +64,7 @@ These tools play crucial roles in digital design, verification, and simulation p
    with the code given.
   
 ````
-module fibonacci_counter (
+module fib_seq_calc (
   input  clk,
   input  rst,
   input  [5:0] n,          // Input for the desired Fibonacci sequence number (6 bits)
@@ -100,7 +100,8 @@ endmodule
 	  
 ````
 
-![Screenshot from 2023-10-24 23-33-48](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/c214ab6a-4b33-4d49-b443-ed62de193cea)
+![Screenshot from 2023-11-03 07-27-36](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/03e7c8b4-0049-451b-897f-41248e68bcf2)
+
 
 
 -Create the test-bench using command -      
@@ -108,7 +109,7 @@ endmodule
 with the code given.
 
 ````
-module tb ();
+module tb_fib_seq_calc ();
 
   reg clk, rst;
   wire [31:0] out;
@@ -232,7 +233,9 @@ module tb ();
 endmodule
 ````
 
-![Screenshot from 2023-10-24 23-34-06](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/76d421b5-e3eb-4ebe-85f5-7731e94dee70)
+![Screenshot from 2023-11-03 07-29-47](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/b6f67c88-7715-4f72-bb04-91c2b2c15b48)
+
+
 
 * Simulation
   
