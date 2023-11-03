@@ -299,7 +299,8 @@ show
 write_verilog fib_seq_calc_net.v
 !vim fib_seq_calc_net.v
 ````
-![Screenshot from 2023-10-24 23-45-32](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/b01ba4f1-066b-4bb2-9777-e8cea2c0844f)
+![Screenshot from 2023-11-03 07-23-22](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/4630c2f2-bb80-4219-a415-59d9c267f9ad)
+
 
 - To reduce the net file -
 
@@ -307,8 +308,8 @@ write_verilog fib_seq_calc_net.v
 write_verilog -noattr fib_seq_calc_net.v
 !vim fib_seq_calc_net.v
 ````
+![Screenshot from 2023-11-03 07-23-58](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/cc433596-0c8e-4d20-83e3-a4148b96cc6a)
 
-![Screenshot from 2023-10-24 23-46-14](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/811af82c-f577-42fb-befa-ef7799c2725a)
 
 * GLS (Gate Level Simulation)
 
