@@ -1,4 +1,4 @@
-module fibonacci_counter (
+module fib_seq_calc (
   input  clk,
   input  rst,
   input  [5:0] n,          // Input for the desired Fibonacci sequence number (6 bits)
