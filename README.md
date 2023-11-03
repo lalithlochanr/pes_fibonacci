@@ -116,7 +116,7 @@ module tb_fib_seq_calc ();
   reg [5:0] n; // User input for the desired Fibonacci sequence number (6 bits)
   wire [5:0] counter; // Counter waveform
 
-  fibonacci_counter u0 (
+  fib_seq_calc u0 (
     .clk(clk),
     .rst(rst),
     .n(n), // Connect the n input
