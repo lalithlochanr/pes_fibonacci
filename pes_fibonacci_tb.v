@@ -1,4 +1,4 @@
-module tb ();
+module tb_fib_seq_calc ();
 
   reg clk, rst;
   wire [31:0] out;
