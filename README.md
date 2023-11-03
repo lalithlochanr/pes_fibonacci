@@ -272,10 +272,10 @@ read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_verilog fib_seq_calc.v
 synth -top fibonacci_counter
 ````
+![Screenshot from 2023-11-03 07-19-31](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/b5601190-b0c2-463e-a69c-3f3417a48a39)
 
-![Screenshot from 2023-10-24 23-39-34](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/45b5bdc4-cc85-49bd-860c-5dc8b3130b9a)
+![Screenshot from 2023-11-03 07-19-39](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/fff07f96-3a64-4ef0-ac17-6a6fa3f80d7c)
 
-![Screenshot from 2023-10-24 23-39-47](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/d393a6f0-038e-4798-b51d-a5c20d3800d5)
 
 - For viewing netlist -
 
