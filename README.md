@@ -334,14 +334,13 @@ gtkwave dump_fib_seq_calc.vcd
 
 </details>
 
-
 <details>
 	<summary> Physical Design </summary>
 
-* Physical Design:
+**Physical Design:**
 Physical design in the context of integrated circuits involves the process of transforming a logical design (a high-level description of a circuit) into a physical representation that can be manufactured. This includes tasks like synthesis, floorplanning, placement, routing, design rule checks. The goal is to create an efficient and manufacturable layout while meeting performance, power, and area constraints.
 
-* Tools:
+**Tools:**
 
 1. Ngspice:
    - Ngspice is an open-source mixed-level/mixed-signal electronic circuit simulator.
@@ -360,7 +359,7 @@ Physical design in the context of integrated circuits involves the process of tr
 
 - in the home directory download the following tools.
 
-* ngspice
+**ngspice**
 
 - download the ngspice file tar zip file - "https://sourceforge.net/projects/ngspice/files/"
 
@@ -375,7 +374,7 @@ sudo make
 sudo make install
 ````
 
-* magic  
+**magic** 
 ````
 sudo apt-get install m4
 sudo apt-get install tcsh
@@ -392,7 +391,7 @@ sudo make
 sudo make install
 ````
 
-* OpenLane
+**OpenLane**
 ````
 sudo apt-get update
 sudo apt-get upgrade
@@ -420,7 +419,7 @@ make
 make test
 ````
 
-* Work-Flow:
+**Work-Flow:**
 
 - In the designs folder of the OpenLane, create a folder with the name of your design.
 
@@ -455,7 +454,7 @@ add_lefs -src $lefs
 ![Screenshot from 2023-11-04 19-06-39](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/4444673c-7ab8-4453-8e23-1c43bbada1ca)
 
  
-* Synthesis
+**Synthesis**
 
 ````
 run_synthesis
@@ -482,7 +481,7 @@ DFSTP = 1 / 576 ≈ 0.0017
 
 DFXTP = 32 / 576 ≈ 0.0556
 
-* Floorplan
+**Floorplan**
 
 ````
 run_floorplan
@@ -499,7 +498,7 @@ magic -T /home/lalith/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef rea
 ![Screenshot from 2023-11-04 19-12-35](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/028cf001-880a-47fd-a383-53f64dbc01da)
 ![Screenshot from 2023-11-04 19-12-41](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/a8e27f45-6a98-4c2d-ad10-5f75fa498e57)
 
-* Placement
+**Placement**
 
 ````
 run_placement
@@ -515,7 +514,7 @@ magic -T /home/lalith/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef rea
 ![Screenshot from 2023-11-04 19-16-51](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/8e6dd8de-23c4-4fdc-97c2-d95983fb3201)
 ![Screenshot from 2023-11-04 19-16-55](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/aa3a6fd6-5fa8-4dc4-91d9-8a625c2ee3a5)
 
-* CTS(Clock Tree Synthesis)
+**CTS(Clock Tree Synthesis)**
 
 ````
 run_cts
@@ -555,7 +554,7 @@ run_cts
 ![Screenshot from 2023-11-04 19-26-05](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/6afd78b5-938d-4d08-81a3-8d8a310db499)
 
 
-* Routing 
+**Routing** 
 
 ````
 run_routing
@@ -595,7 +594,8 @@ magic -T /home/lalith/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef rea
 
 ![Screenshot from 2023-11-04 19-45-17](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/00e64300-3ba6-4967-bd4f-fd43eb480bca)
 
-* Final Statistics:
+
+**Final Statistics**:
 
 - Area = 113695.336 um2
 - Internal Power = 1.46e-03 W
