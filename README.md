@@ -337,7 +337,8 @@ gtkwave dump_fib_seq_calc.vcd
 <details>
 	<summary> Physical Design </summary>
 
-**Physical Design:**
+**Physical Design:**  
+
 Physical design in the context of integrated circuits involves the process of transforming a logical design (a high-level description of a circuit) into a physical representation that can be manufactured. This includes tasks like synthesis, floorplanning, placement, routing, design rule checks. The goal is to create an efficient and manufacturable layout while meeting performance, power, and area constraints.
 
 **Tools:**
@@ -592,7 +593,9 @@ magic -T /home/lalith/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef rea
 
 * Area Report
 
-![Screenshot from 2023-11-04 19-45-17](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/00e64300-3ba6-4967-bd4f-fd43eb480bca)
+![Screenshot from 2023-11-04 19-45-17](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/00e64300-3ba6-4967-bd4f-fd43eb480bca)  
+
+
 
 
 **Final Statistics**:
