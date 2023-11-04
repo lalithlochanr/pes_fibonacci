@@ -424,6 +424,83 @@ make test
 
 - In the designs folder of the OpenLane, create a folder with the name of your design.
 
+![Screenshot from 2023-11-04 18-07-44](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/cb3da22f-174d-4fa3-9b9a-eb001c059d75)
+
+- In the the folder of your design, create a config.json file and a src folder.
+
+![Screenshot from 2023-11-04 18-08-23](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/c1beac3e-a853-41c4-8526-a3871de654d3)
+
+![Screenshot from 2023-11-04 18-09-58](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/416201e2-6636-402c-8639-f1c69457014a)  
+
+- In the src folder, create a file with verilog file of your design and all the libraries required.
+
+![Screenshot from 2023-11-04 18-08-49](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/41a87763-aba3-49fc-b8ef-45379fa3235a)
+
+- In the OpenLane folder, create a folder pdks and the following files.
+
+```` mkdir pdks ````
+
+![Screenshot from 2023-11-04 18-21-28](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/4bafa0b3-ebe5-4d48-90b5-7cb03a8366c1)
+
+
+- In the OpenLane folder terminal, type the following commands.
+
+````
+make mount
+./flow.tcl -interactive
+prep -design fib_seq_calc
+````
+![Screenshot from 2023-11-03 10-30-18](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/37ebe632-5c2b-4217-84fb-3e2854fe4bcb)  
+
+* Synthesis
+
+````
+run_synthesis
+````
+![Screenshot from 2023-11-03 10-30-57](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/6d2342d3-9a27-4be1-b734-b583b61645d4)  
+
+![Screenshot from 2023-11-03 19-56-09](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/03ef081a-b457-413f-abf2-d00e3e9c6d36)  
+
+![Screenshot from 2023-11-04 18-36-49](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/0cc766d8-4791-43c8-8a9f-e1c53b44ca50)  
+
+* Flop-Ratio:
+
+- DFRTP = (Number of DFFs with differential reset-to-preset) / (Total number of cells)  
+
+DFRTP = 69 / 576 ≈ 0.1198
+
+- DFSTP = (Number of DFFs with differential set-to-preset) / (Total number of cells)
+
+DFSTP = 1 / 576 ≈ 0.0017
+
+- DFXTP = (Number of DFFs with differential flip-to-preset) / (Total number of cells)
+
+DFXTP = 32 / 576 ≈ 0.0556
+
+* Floorplan
+
+````
+run_floorplan
+````
+
+![Screenshot from 2023-11-03 15-54-01](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/214b025b-5cc7-4559-95cb-8859b9481074)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
