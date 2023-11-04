@@ -449,19 +449,24 @@ make test
 make mount
 ./flow.tcl -interactive
 prep -design fib_seq_calc
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
 ````
-![Screenshot from 2023-11-03 10-30-18](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/37ebe632-5c2b-4217-84fb-3e2854fe4bcb)  
+![Screenshot from 2023-11-04 19-06-39](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/4444673c-7ab8-4453-8e23-1c43bbada1ca)
 
+ 
 * Synthesis
 
 ````
 run_synthesis
 ````
-![Screenshot from 2023-11-03 10-30-57](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/6d2342d3-9a27-4be1-b734-b583b61645d4)  
 
-![Screenshot from 2023-11-03 19-56-09](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/03ef081a-b457-413f-abf2-d00e3e9c6d36)  
+![Screenshot from 2023-11-04 19-08-00](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/4bc76284-6f54-4ba0-9a20-23df6366cd10)
 
-![Screenshot from 2023-11-04 18-36-49](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/0cc766d8-4791-43c8-8a9f-e1c53b44ca50)  
+![Screenshot from 2023-11-04 19-09-50](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/1245eef5-a1a6-44d7-80dc-d836f8084a6a)
+
+![Screenshot from 2023-11-04 19-09-58](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/81a560b2-cf9d-4c82-ad43-46c630b19233)
+
 
 * Flop-Ratio:
 
@@ -482,45 +487,121 @@ DFXTP = 32 / 576 ≈ 0.0556
 ````
 run_floorplan
 ````
+- to we view the design navigate into the terminal
 
-![Screenshot from 2023-11-03 15-54-01](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/214b025b-5cc7-4559-95cb-8859b9481074)
+````
+magic -T /home/lalith/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read fib_seq_calc.def &
+````
+
+![Screenshot from 2023-11-04 19-10-55](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/39ec4376-1a72-4d75-880a-2158f3e06fd5)  
+![Screenshot from 2023-11-04 19-12-01](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/b80981b3-d465-40bf-8bf0-14ca99fbff51)
+![Screenshot from 2023-11-04 19-12-25](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/464ac5a8-1cbb-4e65-a52d-8cccd62e293b)
+![Screenshot from 2023-11-04 19-12-35](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/028cf001-880a-47fd-a383-53f64dbc01da)
+![Screenshot from 2023-11-04 19-12-41](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/a8e27f45-6a98-4c2d-ad10-5f75fa498e57)
+
+* Placement
+
+````
+run_placement
+````
+- to we view the design navigate into the terminal
+
+````
+magic -T /home/lalith/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read fib_seq_calc.def &
+````
+![Screenshot from 2023-11-04 19-15-14](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/a1014af1-e118-4bb8-812e-faae610b7735)
+![Screenshot from 2023-11-04 19-16-24](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/297f99f2-8a70-4a4f-9aa4-feef54664457)
+![Screenshot from 2023-11-04 19-16-46](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/6ac440fd-d7cf-4417-afb3-c6e7d577f425)
+![Screenshot from 2023-11-04 19-16-51](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/8e6dd8de-23c4-4fdc-97c2-d95983fb3201)
+![Screenshot from 2023-11-04 19-16-55](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/aa3a6fd6-5fa8-4dc4-91d9-8a625c2ee3a5)
+
+* CTS(Clock Tree Synthesis)
+
+````
+run_cts
+````
+![Screenshot from 2023-11-04 19-27-07](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/8eaca168-1bbb-44aa-bad1-27fa52944a67)
+
+![Screenshot from 2023-11-04 19-21-44](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/854997d6-2be3-41a7-a15c-36ba5cb2ff2d)
+
+![Screenshot from 2023-11-04 19-21-54](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/4af39e5a-dade-4f97-abac-1dc2bd466b79)
+
+![Screenshot from 2023-11-04 19-22-14](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/25e7191b-d86e-45ee-9f2c-128edec71c50)
+
+![Screenshot from 2023-11-04 19-22-21](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/a7875679-4027-41cc-b590-4b08e9824640)
+
+![Screenshot from 2023-11-04 19-22-38](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/5721868a-c4f1-4f63-83fc-e2e1cb4bdf81)
+
+![Screenshot from 2023-11-04 19-22-45](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/ca854eca-cd2d-4875-89e5-a43733afcba4)
+
+![Screenshot from 2023-11-04 19-23-14](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/62fc09a8-0be4-4977-986a-a351d134837a)
+
+![Screenshot from 2023-11-04 19-23-21](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/8fbac91c-4e51-4989-8f6c-2686871fc3da)
+
+![Screenshot from 2023-11-04 19-23-30](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/4d3fadc2-faca-47e2-8df9-9da87a6f149d)
+
+![Screenshot from 2023-11-04 19-24-06](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/401ba188-eb53-4969-aae0-de5335823ccb)
+
+* Power Report
+
+![Screenshot from 2023-11-04 19-25-18](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/84b56e11-9133-4c54-87a0-6ace5ec29ca4)
+
+* Skew Report
+
+![Screenshot from 2023-11-04 19-25-45](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/000e48b7-43cb-4de1-b55d-c7f7f1e218a2)
+
+* Area Report
+
+![Screenshot from 2023-11-04 19-26-05](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/6afd78b5-938d-4d08-81a3-8d8a310db499)
 
 
+* Routing 
 
+````
+run_routing
+````
+- to we view the design navigate into the terminal
 
+````
+magic -T /home/lalith/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read fib_seq_calc.def &
+````
 
+![Screenshot from 2023-11-04 19-32-35](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/afca3629-c82a-45a4-a105-10160a2dc72f)
+![Screenshot from 2023-11-04 19-38-00](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/aedaf47a-2474-4eae-b189-408c0270e6a1)
+![Screenshot from 2023-11-04 19-38-15](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/df3f87e0-97f5-45d9-ac8a-fc86429a13f3)
+![Screenshot from 2023-11-04 19-38-25](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/93cf825c-9047-4d56-9196-01051a003978)
+![Screenshot from 2023-11-04 19-38-30](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/32761fad-89cc-464b-a6ff-2c7d2f019706)
+![Screenshot from 2023-11-04 19-38-35](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/410c72dd-c9ab-4947-b784-65abebd92567)
+![Screenshot from 2023-11-04 19-38-39](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/73fc364b-d221-45b2-bf56-0f6ab6a64a6d)
+![Screenshot from 2023-11-04 19-38-53](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/1c412d93-8c17-4999-886a-a5f2a1a033e6)  
 
+* Final Congestion Report
 
+![Screenshot from 2023-11-04 19-41-19](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/fad8ff67-c603-4bfe-b2de-ac34e79c271f)
 
+* Power Report
 
+![Screenshot from 2023-11-04 19-43-24](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/20df3c2d-2390-413c-ae14-a96305beb9c1)
 
+* Skew Report
 
+![Screenshot from 2023-11-04 19-44-13](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/45ff8580-ec7e-4b61-85d6-02612f13f994)
 
+* Summary Report
 
+![Screenshot from 2023-11-04 19-44-58](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/1e34c1b7-acce-4005-b6da-a1cf90df6390)  
 
+* Area Report
 
+![Screenshot from 2023-11-04 19-45-17](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/00e64300-3ba6-4967-bd4f-fd43eb480bca)
 
+* Final Statistics:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Area = 113695.336 um2
+- Internal Power = 1.46e-03 W
+- Switching Power = 7.74e-04
+- Leakage Power = 3.84e-09
+- Total Power = 2.24e-03
 
 </details>
   
