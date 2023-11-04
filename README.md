@@ -338,9 +338,113 @@ gtkwave dump_fib_seq_calc.vcd
 <details>
 	<summary> Physical Design </summary>
 
+* Physical Design:
+Physical design in the context of integrated circuits involves the process of transforming a logical design (a high-level description of a circuit) into a physical representation that can be manufactured. This includes tasks like synthesis, floorplanning, placement, routing, design rule checks. The goal is to create an efficient and manufacturable layout while meeting performance, power, and area constraints.
+
+* Tools:
+
+1. Ngspice:
+   - Ngspice is an open-source mixed-level/mixed-signal electronic circuit simulator.
+   - It is used for simulating and analyzing analog, digital, and mixed-signal circuits.
+   - Ngspice can be used for tasks like transient analysis, AC analysis, and DC analysis of electronic circuits.
+
+2. Magic:
+   - Magic is an open-source VLSI layout and design tool.
+   - It's used for the physical layout design of integrated circuits.
+   - Magic allows designers to create and edit layouts, perform design rule checks, and generate GDSII files for fabrication.
+
+3. OpenLane:
+   - OpenLane is an open-source digital ASIC design flow.
+   - It automates the process of taking a high-level RTL (Register-Transfer Level) description and transforming it into a manufacturable GDSII file.
+   - OpenLane includes several tools and scripts for synthesis, place and route, and other physical design tasks to streamline the ASIC design process.
+
+- in the home directory download the following tools.
+
+* ngspice
+
+- download the ngspice file tar zip file - "https://sourceforge.net/projects/ngspice/files/"
+
+````
+sudo apt-get install libxaw7-dev
+tar -zxvf ngspice-41.tar.gz
+cd ngspice-41
+mkdir release
+cd release
+../configure  --with-x --with-readline=yes --disable-debug
+sudo make
+sudo make install
+````
+
+* magic  
+````
+sudo apt-get install m4
+sudo apt-get install tcsh
+sudo apt-get install csh
+sudo apt-get install libx11-dev
+sudo apt-get install tcl-dev tk-dev
+sudo apt-get install libcairo2-dev
+sudo apt-get install mesa-common-dev libglu1-mesa-dev
+sudo apt-get install libncurses-dev
+git clone https://github.com/RTimothyEdwards/magic
+cd magic
+./configure
+sudo make
+sudo make install
+````
+
+* OpenLane
+````
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install -y build-essential python3 python3-venv python3-pip make git
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+sudo docker run hello-world
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo reboot 
+# After reboot
+docker run hello-world (should show you the output under 'Example Output' in https://hub.docker.com/_/hello-world)
+
+- To install the PDKs and Tools
+cd $HOME
+git clone https://github.com/The-OpenROAD-Project/OpenLane
+cd OpenLane
+make
+make test
+````
+
+* Work-Flow:
+
+- In the designs folder of the OpenLane, create a folder with the name of your design.
 
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </details>
   
 
