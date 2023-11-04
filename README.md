@@ -436,7 +436,7 @@ make test
 
 ![Screenshot from 2023-11-04 18-08-49](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/41a87763-aba3-49fc-b8ef-45379fa3235a)
 
-- In the OpenLane folder, create a folder pdks and the following files.
+- In the OpenLane folder, create a folder pdks and add the following files.
 
 ![Screenshot from 2023-11-04 18-21-28](https://github.com/lalithlochanr/pes_fibonacci/assets/108328466/4bafa0b3-ebe5-4d48-90b5-7cb03a8366c1)
 
